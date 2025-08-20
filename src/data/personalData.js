@@ -62,13 +62,27 @@ export const personalData = {
         { name: 'MongoDB', icon: 'https://cdn.simpleicons.org/mongodb/47A248' },
         { name: 'SQL', icon: 'https://cdn.simpleicons.org/mysql/4479A1' },
     ],
-    languages: [
-        { language: 'English', proficiency: 'Proficient' },
-        { language: 'Arabic', proficiency: 'Native/Bilingual' },
+languages: [
+        { language: 'English', level: 4 },
+        { language: 'Arabic', level: 5 },
+        { language: 'French', level: 2 },
     ],
-    courses: [
-        { name: 'JavaScript (Intermediate)', institution: 'HackerRank', period: '03/2025' ,link: 'https://www.hackerrank.com/certificates/iframe/959e6c5be88f' },
-        { name: 'Full Stack Development (React & Node.js)', institution: 'Route Academy', period: '05/2023 – 03/2024' ,link: 'https://drive.google.com/file/d/1ORT2uB2b1QHI0m-PmynAdH3OkjbQn07g/view'},
+    
+    certificates: [
+        { 
+            name: 'JavaScript (Intermediate)', 
+            institution: 'HackerRank', 
+            period: '03/2025',
+            link: 'https://www.hackerrank.com/certificates/iframe/959e6c5be88f',
+            image: 'https://res.cloudinary.com/dfdmgqhwa/image/upload/v1755723807/78530dd0-fceb-496d-a84f-e1e4521499e3.png'
+        },
+        { 
+            name: 'Full Stack Development (React & Node.js)', 
+            institution: 'Route Academy', 
+            period: '05/2023 – 03/2024',
+            link: 'https://drive.google.com/file/d/1ORT2uB2b1QHI0m-PmynAdH3OkjbQn07g/view',
+            image: 'https://res.cloudinary.com/dfdmgqhwa/image/upload/v1755723810/ae479bcc-34d8-4d2f-8970-ffb18349a721.png'
+        },
     ],
     projects: [
         {

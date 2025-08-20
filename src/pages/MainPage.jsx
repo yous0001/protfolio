@@ -4,7 +4,7 @@ import { personalData } from '../data/personalData';
 import Timeline from '../components/Timeline';
 import { motion } from 'framer-motion';
 import { Component } from 'react';
-import { ChevronDown, ExternalLink, Mail, Phone, MapPin } from 'lucide-react';
+import { ChevronDown, ExternalLink, Mail, Phone, MapPin, Star } from 'lucide-react';
 
 // Error Boundary Class
 class ErrorBoundary extends Component {
@@ -52,7 +52,7 @@ function MainPage() {
             const headerOffset = 80;
             const elementPosition = element.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-            
+
             window.scrollTo({
                 top: offsetPosition,
                 behavior: "smooth"
@@ -241,10 +241,10 @@ function MainPage() {
                                 whileHover={{ scale: 1.05, y: -5 }}
                                 className="flex flex-col items-center p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-all"
                             >
-                                <img 
-                                    src={skill.icon} 
-                                    alt={`${skill.name} icon`} 
-                                    className="w-10 h-10 mb-2 object-contain" 
+                                <img
+                                    src={skill.icon}
+                                    alt={`${skill.name} icon`}
+                                    className="w-10 h-10 mb-2 object-contain"
                                     onError={(e) => {
                                         e.target.src = 'https://cdn.simpleicons.org/question/666666';
                                     }}
@@ -323,7 +323,7 @@ function MainPage() {
                 {/* Languages */}
                 <SectionWrapper id="languages" className="bg-gray-50 dark:bg-gray-900">
                     <SectionTitle>Languages</SectionTitle>
-                    <div className="flex flex-wrap justify-center gap-6 max-w-2xl mx-auto">
+                    <div className="flex flex-wrap justify-center gap-8 max-w-2xl mx-auto">
                         {personalData.languages.map((lang, index) => (
                             <motion.div
                                 key={index}
@@ -336,39 +336,65 @@ function MainPage() {
                                 <div className="text-3xl mb-2">
                                     {lang.language === 'English' ? '🇺🇸' : '🇪🇬'}
                                 </div>
-                                <h3 className="font-semibold text-gray-900 dark:text-white">
+                                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
                                     {lang.language}
                                 </h3>
-                                <p className="text-gray-600 dark:text-gray-300">
-                                    {lang.proficiency}
-                                </p>
+                                <div className="flex">
+                                    {[...Array(5)].map((_, i) => (
+                                        <Star
+                                            key={i}
+                                            size={20}
+                                            className={i < lang.level
+                                                ? "text-yellow-400 fill-yellow-400"
+                                                : "text-gray-300 dark:text-gray-600"
+                                            }
+                                        />
+                                    ))}
+                                </div>
                             </motion.div>
                         ))}
                     </div>
                 </SectionWrapper>
 
-                {/* Courses */}
-                <SectionWrapper id="courses" className="bg-white dark:bg-gray-800">
-                    <SectionTitle>Courses & Certifications</SectionTitle>
+                {/* Certificates */}
+                <SectionWrapper id="certificates" className="bg-white dark:bg-gray-800">
+                    <SectionTitle>Certificates</SectionTitle>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                        {personalData.courses.map((course, index) => (
+                        {personalData.certificates.map((certificate, index) => (
                             <motion.div
                                 key={index}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, margin: "-100px" }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className="p-6 bg-gray-50 dark:bg-gray-700 rounded-xl border-l-4 border-blue-500"
+                                className="bg-white dark:bg-gray-700 rounded-xl shadow-md overflow-hidden border border-gray-200 dark:border-gray-600"
                             >
-                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                                    {course.name}
-                                </h3>
-                                <p className="text-gray-700 dark:text-gray-300 mb-1">
-                                    {course.institution}
-                                </p>
-                                <p className="text-gray-600 dark:text-gray-400 text-sm">
-                                    Completed: {course.period}
-                                </p>
+                                <a href={certificate.link} target="_blank" rel="noopener noreferrer">
+                                    <img
+                                        src={certificate.image}
+                                        alt={certificate.name}
+                                        className="w-full h-48 object-cover"
+                                    />
+                                </a>
+                                <div className="p-6">
+                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                        {certificate.name}
+                                    </h3>
+                                    <p className="text-gray-700 dark:text-gray-300 mb-1">
+                                        {certificate.institution}
+                                    </p>
+                                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                                        Completed: {certificate.period}
+                                    </p>
+                                    <a
+                                        href={certificate.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline"
+                                    >
+                                        View Certificate <ExternalLink size={16} className="ml-1" />
+                                    </a>
+                                </div>
                             </motion.div>
                         ))}
                     </div>
