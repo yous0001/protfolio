@@ -1,7 +1,7 @@
 export const personalData = {
     name: 'Yousef Emad',
     title: 'Full-Stack Developer',
-    profileImage: '/src/assets/profile-image.jpg',
+    profileImage: 'https://res.cloudinary.com/dfdmgqhwa/image/upload/v1755722852/profile-image_vfbhgw.jpg',
     profile: 'Full-Stack Developer (Node.js, React, MongoDB) with experience in scalable APIs, real-time features, and AI-powered web applications. Skilled in authentication, DevOps, and delivering high-performance solutions under tight deadlines.',
     email: 'mad33833@gmail.com',
     phone: '01276085914',
@@ -92,11 +92,11 @@ export const personalData = {
             period: '09/2024 – 06/2025',
             description: 'Full-stack recipe recommendation system that suggests recipes based on user-provided ingredients using machine learning. Features include recipe search and categorization, AI-powered recommendations, ingredient marketplace, user reviews, favorites system, and secure payment integration.',
             technologies: ['React', 'Node.js', 'MongoDB', 'Machine Learning', 'WebSockets', 'Payment Processing'],
-            logo: 'https://via.placeholder.com/100',
+            logo: 'https://res.cloudinary.com/dfdmgqhwa/image/upload/v1740230885/recipesSystem/Reciplore-removebg_xnsmub.png',
             images: [
-                'https://via.placeholder.com/600x400',
-                'https://via.placeholder.com/600x400',
-                'https://via.placeholder.com/600x400',
+                'https://res.cloudinary.com/dfdmgqhwa/image/upload/v1755722952/recipesSystem/image1_e88xm6.png',
+                'https://res.cloudinary.com/dfdmgqhwa/image/upload/v1755723040/recipesSystem/8724eac0-a3ea-4f92-9bb0-79ec22d88a2c.png',
+                'https://res.cloudinary.com/dfdmgqhwa/image/upload/v1755723058/recipesSystem/28575796-298a-4724-854f-ba3dbac0f3dc.png',
             ],
             demoUrl: 'https://reciplore-frontend.vercel.app/',
             githubUrl: 'https://github.com/yous0001/Graduation-Project'

@@ -34,7 +34,7 @@ function ProjectDetail() {
                     className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700"
                 >
                     <img
-                        src={`${project.images[0]}.jpg`}
+                        src={project.images[0]}
                         alt={project.title}
                         className="w-full h-64 object-cover"
                     />
@@ -86,7 +86,7 @@ function ProjectDetail() {
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     transition={{ duration: 0.5, delay: 0.3 + (index * 0.1) }}
-                                    src={`${image}.jpg`}
+                                    src={image}
                                     alt={`${project.title} screenshot ${index + 1}`}
                                     className="rounded-lg shadow-md w-full h-48 object-cover"
                                 />
