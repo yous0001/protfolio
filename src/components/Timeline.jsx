@@ -1,4 +1,3 @@
-// Timeline.jsx
 import { personalData } from '../data/personalData';
 import { motion } from 'framer-motion';
 

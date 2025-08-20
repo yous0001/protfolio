@@ -1,4 +1,3 @@
-// Header.jsx
 import { NavLink } from 'react-router-dom';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
@@ -6,21 +5,41 @@ import { useState, useEffect } from 'react';
 function Header() {
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
 
     useEffect(() => {
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        // Check for saved theme preference or use system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        // Set initial theme
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
             document.documentElement.classList.add('dark');
             setIsDarkMode(true);
         } else {
             document.documentElement.classList.remove('dark');
             setIsDarkMode(false);
         }
+
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 10);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     const toggleDarkMode = () => {
-        document.documentElement.classList.toggle('dark');
-        localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-        setIsDarkMode(!isDarkMode);
+        const htmlElement = document.documentElement;
+        if (htmlElement.classList.contains('dark')) {
+            htmlElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+            setIsDarkMode(false);
+        } else {
+            htmlElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+            setIsDarkMode(true);
+        }
     };
 
     const navItems = [
@@ -39,14 +58,25 @@ function Header() {
         if (href.startsWith('#')) {
             const element = document.querySelector(href);
             if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
+                const headerOffset = 80;
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
             }
         }
         setMobileMenuOpen(false);
     };
 
     return (
-        <header className="fixed top-0 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-sm z-50 border-b border-gray-200 dark:border-gray-800">
+        <header className={`fixed top-0 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md z-50 border-b transition-all duration-300 ${
+            scrolled 
+                ? 'border-gray-200 dark:border-gray-800 shadow-sm' 
+                : 'border-transparent'
+        }`}>
             <nav className="w-full px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center py-4">
                     <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">

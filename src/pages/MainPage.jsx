@@ -1,9 +1,10 @@
+// pages/MainPage.jsx
 import { Link } from 'react-router-dom';
 import { personalData } from '../data/personalData';
 import Timeline from '../components/Timeline';
 import { motion } from 'framer-motion';
 import { Component } from 'react';
-import { ChevronDown, ExternalLink, Mail } from 'lucide-react';
+import { ChevronDown, ExternalLink, Mail, Phone, MapPin } from 'lucide-react';
 
 // Error Boundary Class
 class ErrorBoundary extends Component {
@@ -23,8 +24,8 @@ class ErrorBoundary extends Component {
 
 // Section wrapper component for consistent animations
 const SectionWrapper = ({ children, id, className = '' }) => (
-    <section id={id} className={`py-16 md:py-24 ${className}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id={id} className={`py-16 md:py-20 ${className}`}>
+        <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8`}>
             {children}
         </div>
     </section>
@@ -48,7 +49,14 @@ function MainPage() {
     const scrollToSection = (id) => {
         const element = document.querySelector(id);
         if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
+            const headerOffset = 80;
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth"
+            });
         }
     };
 
@@ -158,7 +166,7 @@ function MainPage() {
                                 <p className="text-sm text-gray-600 dark:text-gray-300">Projects Completed</p>
                             </div>
                             <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg text-center">
-                                <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">5+</p>
+                                <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">20+</p>
                                 <p className="text-sm text-gray-600 dark:text-gray-300">Technologies</p>
                             </div>
                             <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg text-center">
@@ -233,10 +241,13 @@ function MainPage() {
                                 whileHover={{ scale: 1.05, y: -5 }}
                                 className="flex flex-col items-center p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-all"
                             >
-                                <img
-                                    src={skill.icon}
-                                    alt={`${skill.name} icon`}
-                                    className="w-10 h-10 mb-2 object-contain"
+                                <img 
+                                    src={skill.icon} 
+                                    alt={`${skill.name} icon`} 
+                                    className="w-10 h-10 mb-2 object-contain" 
+                                    onError={(e) => {
+                                        e.target.src = 'https://cdn.simpleicons.org/question/666666';
+                                    }}
                                 />
                                 <span className="text-sm font-medium text-gray-700 dark:text-gray-300 text-center">
                                     {skill.name}
@@ -261,11 +272,11 @@ function MainPage() {
                                 className="group bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl overflow-hidden transition-all border border-gray-200 dark:border-gray-700"
                             >
                                 <div className="relative overflow-hidden">
-                                    <img
-                                        src={`${project.images[0]}.jpg`}
-                                        alt={project.title}
-                                        className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                                    />
+                                    <div className="w-full h-48 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 flex items-center justify-center">
+                                        <span className="text-2xl font-bold text-gray-700 dark:text-gray-300">
+                                            {project.title}
+                                        </span>
+                                    </div>
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                                         <Link
                                             to={`/project/${project.id}`}
@@ -285,6 +296,18 @@ function MainPage() {
                                     <p className="text-gray-700 dark:text-gray-400 line-clamp-3">
                                         {project.description}
                                     </p>
+                                    <div className="flex flex-wrap gap-2 mt-4">
+                                        {project.technologies.slice(0, 3).map((tech, idx) => (
+                                            <span key={idx} className="bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 text-xs px-2 py-1 rounded">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                        {project.technologies.length > 3 && (
+                                            <span className="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-2 py-1 rounded">
+                                                +{project.technologies.length - 3} more
+                                            </span>
+                                        )}
+                                    </div>
                                     <Link
                                         to={`/project/${project.id}`}
                                         className="inline-flex items-center mt-4 text-blue-600 dark:text-blue-400 hover:underline"
@@ -370,19 +393,14 @@ function MainPage() {
                                 </a>
                             </div>
                             <div className="flex flex-col items-center p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-500 mb-2">
-                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                                </svg>
+                                <Phone size={24} className="text-blue-500 mb-2" />
                                 <h3 className="font-medium text-gray-900 dark:text-white">Phone</h3>
                                 <a href={`tel:${personalData.phone}`} className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                                     {personalData.phone}
                                 </a>
                             </div>
                             <div className="flex flex-col items-center p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-500 mb-2">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                    <circle cx="12" cy="10" r="3"></circle>
-                                </svg>
+                                <MapPin size={24} className="text-blue-500 mb-2" />
                                 <h3 className="font-medium text-gray-900 dark:text-white">Location</h3>
                                 <p className="text-gray-600 dark:text-gray-300 text-center">{personalData.location}</p>
                             </div>

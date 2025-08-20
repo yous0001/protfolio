@@ -1,4 +1,3 @@
-// personalData.js
 export const personalData = {
     name: 'Yousef Emad',
     title: 'Full-Stack Developer',
@@ -7,8 +6,8 @@ export const personalData = {
     email: 'mad33833@gmail.com',
     phone: '01276085914',
     location: 'egypt, sohag, tahta',
-    linkedin: 'https://linkedin.com/in/yousef-emad',
-    github: 'https://github.com/yousef-emad',
+    linkedin: 'https://www.linkedin.com/in/yousefemad-',
+    github: 'https://github.com/yous0001',
     education: [
         {
             degree: 'Bachelor of Information Technology',
@@ -68,8 +67,8 @@ export const personalData = {
         { language: 'Arabic', proficiency: 'Native/Bilingual' },
     ],
     courses: [
-        { name: 'JavaScript (Intermediate)', institution: 'HackerRank', period: '03/2025' },
-        { name: 'Full Stack Development (React & Node.js)', institution: 'Route Academy', period: '05/2023 – 03/2024' },
+        { name: 'JavaScript (Intermediate)', institution: 'HackerRank', period: '03/2025' ,link: 'https://www.hackerrank.com/certificates/iframe/959e6c5be88f' },
+        { name: 'Full Stack Development (React & Node.js)', institution: 'Route Academy', period: '05/2023 – 03/2024' ,link: 'https://drive.google.com/file/d/1ORT2uB2b1QHI0m-PmynAdH3OkjbQn07g/view'},
     ],
     projects: [
         {
@@ -78,14 +77,14 @@ export const personalData = {
             period: '07/2025 – Present',
             description: 'Complete e-commerce backend solution built with Node.js, Express, and MongoDB, featuring user authentication & JWT-based authorization, product management with image uploads, shopping cart, order management, and coupon system. Integrated secure payments (Visa & Cash on Delivery) with RESTful APIs designed for easy frontend integration.',
             technologies: ['Node.js', 'Express', 'MongoDB', 'JWT', 'REST API', 'Payment Integration'],
-            logo: 'src/assets/sohag-store/logo',
+            logo: 'https://via.placeholder.com/100',
             images: [
-                'src/assets/sohag-store/image1',
-                'src/assets/sohag-store/image2',
-                'src/assets/sohag-store/image3',
+                'https://via.placeholder.com/600x400',
+                'https://via.placeholder.com/600x400',
+                'https://via.placeholder.com/600x400',
             ],
             demoUrl: 'https://sohag-store.demo.com',
-            githubUrl: 'https://github.com/yousef-emad/sohag-store'
+            githubUrl: 'https://github.com/yous0001/sohag-store'
         },
         {
             id: 2,
@@ -93,14 +92,14 @@ export const personalData = {
             period: '09/2024 – 06/2025',
             description: 'Full-stack recipe recommendation system that suggests recipes based on user-provided ingredients using machine learning. Features include recipe search and categorization, AI-powered recommendations, ingredient marketplace, user reviews, favorites system, and secure payment integration.',
             technologies: ['React', 'Node.js', 'MongoDB', 'Machine Learning', 'WebSockets', 'Payment Processing'],
-            logo: 'src/assets/reciplore/logo',
+            logo: 'https://via.placeholder.com/100',
             images: [
-                'src/assets/reciplore/image1',
-                'src/assets/reciplore/image2',
-                'src/assets/reciplore/image3',
+                'https://via.placeholder.com/600x400',
+                'https://via.placeholder.com/600x400',
+                'https://via.placeholder.com/600x400',
             ],
-            demoUrl: 'https://reciplore.demo.com',
-            githubUrl: 'https://github.com/yousef-emad/reciplore'
+            demoUrl: 'https://reciplore-frontend.vercel.app/',
+            githubUrl: 'https://github.com/yous0001/Graduation-Project'
         },
     ],
 };

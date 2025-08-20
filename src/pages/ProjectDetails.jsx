@@ -1,4 +1,3 @@
-// ProjectDetails.jsx
 import { useParams, Link } from 'react-router-dom';
 import { personalData } from '../data/personalData';
 import { motion } from 'framer-motion';

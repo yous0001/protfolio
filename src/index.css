@@ -5,10 +5,12 @@
     --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
-html, body {
+html,
+body {
     height: 100%;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 
 html {
@@ -101,12 +103,11 @@ body {
     animation: fadeInUp 0.6s ease-out forwards;
 }
 
-/* Full width sections */
 .full-width-section {
-    width: 100vw;
+    width: 100%;
     position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
+    left: 0;
+    right: 0;
+    margin-left: 0;
+    margin-right: 0;
 }
